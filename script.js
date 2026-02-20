@@ -3,22 +3,21 @@ const dot = document.getElementById('cursorDot');
 let mx = 0, my = 0, fx = 0, fy = 0;
 
 document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.transform = 'translate(${mx - 3}px, ${my - 3}px)';
+    mx = e.clientX; 
+    my = e.clientY;
+    dot.style.left = (mx - 2.5) + 'px';
+    dot.style.top = (my - 2.5) + 'px';
 });
 
 function animateFlower() {
-    fx += (mx - fx) * 0.08;
-    fy += (my-fy) * 0.08;
-    cursor.style.transform = 'translate(${fx - 18}px, ${fy - 18}px)';
+    fx += (mx - fx) * 0.1;
+    fy += (my-fy) * 0.1;
+    cursor.style.left = (fx - 16) + 'px';
+    cursor.style.top = (fy - 16) + 'px';
     requestAnimationFrame(animateFlower);
 }
 animateFlower();
 
-document.querySelectorAll('a, button, .projet-card, .exp-card, .hobby-card, .skill-pill, .social-icons span').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.style.transform += ' scale(1.5) ');
-    el.addEventListener('mouseleave', () => {});
-});
 
 const reveals = document.querySelectorAll('.reveal');
 const obs = new IntersectionObserver(entries => {
